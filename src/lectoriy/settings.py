@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'events.apps.EventsConfig',
     'likes.apps.LikesConfig',
     'subscriptions.apps.SubscriptionsConfig',
-    'users.apps.UsersConfig',
+    'core.apps.CoreConfig',
     'videos.apps.VideosConfig',
 ]
 
@@ -63,7 +63,7 @@ MIDDLEWARE = [
 
 INTERNAL_IPS = '127.0.0.1',
 
-AUTH_USER_MODEL = 'users.User'
+AUTH_USER_MODEL = 'core.User'
 
 ROOT_URLCONF = 'lectoriy.urls'
 
