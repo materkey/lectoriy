@@ -11,16 +11,19 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import configparser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+config = configparser.ConfigParser()
+config.read(os.path.join(BASE_DIR, '../django.conf'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'jzr*n$p%#!(@m=g9w*y5&g%b-7(caq^l^c9%(al%zj9qa(&+n9'
+SECRET_KEY = config.get('main', 'SECRET')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
+    'chats.apps.ChatsConfig',
+    'comments.apps.CommentsConfig',
+    'events.apps.EventsConfig',
+    'likes.apps.LikesConfig',
+    'subscriptions.apps.SubscriptionsConfig',
+    'users.apps.UsersConfig',
+    'videos.apps.VideosConfig',
 ]
 
 MIDDLEWARE = [
@@ -47,7 +58,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+INTERNAL_IPS = '127.0.0.1',
+
+AUTH_USER_MODEL = 'users.User'
 
 ROOT_URLCONF = 'lectoriy.urls'
 
@@ -76,11 +92,10 @@ WSGI_APPLICATION = 'lectoriy.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'lectoriy',
-        'USER' : 'lectoriy',
-        'PASSWORD' : 'lectoriy',
-        'HOST' : '127.0.0.1',
-        'PORT' : '5432',
+        'NAME': config.get('db', 'NAME'),
+        'USER' : config.get('db', 'USER'),
+        'PASSWORD' : config.get('db', 'PASSWORD'),
+        'HOST' : 'localhost',
     }
 }
 
@@ -107,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'UTC'
 
