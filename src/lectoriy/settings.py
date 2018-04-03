@@ -28,7 +28,10 @@ SECRET_KEY = config.get('main', 'SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    config.get('ngrok', 'URL'),
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -41,13 +44,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'social_django',
+    'rest_framework',
+    'rest_framework.authtoken',
     'chats.apps.ChatsConfig',
     'comments.apps.CommentsConfig',
     'events.apps.EventsConfig',
     'likes.apps.LikesConfig',
-    'subscriptions.apps.SubscriptionsConfig',
     'core.apps.CoreConfig',
     'videos.apps.VideosConfig',
+    'autofixture',
 ]
 
 MIDDLEWARE = [
@@ -118,6 +124,29 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = config.get('social', 'SOCIAL_AUTH_VK_OAUTH2_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = config.get('social', 'SOCIAL_AUTH_VK_OAUTH2_SECRET')
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email', ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+      'rest_framework.authentication.TokenAuthentication',
+      'rest_framework.authentication.SessionAuthentication',
+      # 'application.authentication.CsrfExemptSessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+    ],
+    # 'PAGE_SIZE': 10,
+    # 'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/

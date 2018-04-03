@@ -16,11 +16,26 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
+from rest_framework.authtoken.views import obtain_auth_token
+from rest_framework.routers import DefaultRouter
 
+from core.views import login_view, UserViewSet
 from lectoriy import settings
+from comments.views import CommentViewSet
+
+
+router = DefaultRouter()
+router.register('comments', CommentViewSet, base_name='comment')
+router.register('users', UserViewSet, base_name='user')
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='accounts/login')),
     path('admin/', admin.site.urls),
+    path('accounts/', include('core.urls', namespace='core')),
+    path('social/', include('social_django.urls', namespace='social')),
+    path('api/v1/', include(router.urls)),
+    path('api-token-auth/', obtain_auth_token)
 ]
 
 if settings.DEBUG:
