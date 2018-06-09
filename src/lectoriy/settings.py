@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'core.apps.CoreConfig',
     'videos.apps.VideosConfig',
     'autofixture',
+    'webpack_loader',
 ]
 
 MIDDLEWARE = [
@@ -66,6 +67,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')
+
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        # 'BUNDLE_DIR_NAME': '/static/build/', # must end with slash
+        'STATS_FILE': os.path.join(BASE_DIR, 'webpack-stats.json'),
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': ['.+\.hot-update.js', '.+\.map']
+    }
+}
 
 INTERNAL_IPS = '127.0.0.1',
 
@@ -166,3 +180,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+SOURCE_ROOT = BASE_DIR + '/'
+
+STATICFILES_DIRS = (
+    os.path.join(SOURCE_ROOT, "static"),
+)
+
+print(STATICFILES_DIRS)

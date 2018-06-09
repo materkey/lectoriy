@@ -1,0 +1,1 @@
+{"status":"error","publicPath":"/static/build/","error":"ModuleNotFoundError","message":"Module not found: Error: Can't resolve './applyMiddleware' in '/home/materkey/lectoriy/src/node_modules/redux/es'"}

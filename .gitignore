@@ -1,4 +1,7 @@
 *.pyc
 .idea
 env/
+src/node_modules/
+src/collected_static/
+src/static/
 django.conf
