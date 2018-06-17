@@ -1,19 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import createHistory from 'history/createBrowserHistory';
+import { ConnectedRouter, routerMiddleware } from 'react-router-redux';
+
 import App from './components/App';
+import initStore from './utils/store';
 
-class HelloWorld extends React.Component {
-    render() {
-        return <div className={this.props.divClass}>Hello <div>{this.props.test}</div> {this.props.children} !</div>;
-    }
-}
-
-// ReactDOM.render(
-//     <App />,
-//     document.getElementById('root'),
-// );
+const history = createHistory();
+const middleware = routerMiddleware(history);
 
 ReactDOM.render(
-    <HelloWorld divClass="testClass" test="text">texttext</HelloWorld>,
+    <Provider store={ initStore([middleware]) }>
+        <ConnectedRouter history={ history }>
+            <App />
+        </ConnectedRouter>
+    </Provider>,
     document.getElementById('root'),
 );

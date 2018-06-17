@@ -1,18 +1,14 @@
 {% load render_bundle from webpack_loader %}
+{% load static %}
 <!doctype html>
 <html>
   <head>
-    <title>Getting Started</title>
-    <!-- <script src="https://unpkg.com/lodash@4.16.6"></script> -->
+      <meta charset="UTF-8">
+      <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+      <title>Лекторий</title>
   </head>
   <body>
-{#    <h1 id="world">Hi</h1>#}
-    <div id="root" class="testClass">
-        Hello
-    </div>
-{#    <script src="../static/build/app.js"></script>#}
-{#    {% render_bundle 'app' 'js' %}#}
-{#    {% render_bundle 'test' 'js' %}#}
+    <div id="root"></div>
     {% render_bundle 'index' 'js' %}
   </body>
 </html>
