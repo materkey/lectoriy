@@ -32,13 +32,15 @@ router.register('comments', CommentViewSet, base_name='comment')
 router.register('users', UserViewSet, base_name='user')
 
 urlpatterns = [
-    path('', RedirectView.as_view(url='accounts/login')),
+    # path('', RedirectView.as_view(url='accounts/login')),
     path('admin/', admin.site.urls),
     path('accounts/', include('core.urls', namespace='core')),
     path('social/', include('social_django.urls', namespace='social')),
     path('api/v1/', include(router.urls)),
     path('api-token-auth/', obtain_auth_token),
-    # re_path(r'^.*?/$', index.index),
+
+    re_path(r'^$', index.index, name ='index_page'),
+    re_path(r'^.*?/$', index.index),
 ]
               # + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

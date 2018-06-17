@@ -1,0 +1,18 @@
+{% load render_bundle from webpack_loader %}
+<!doctype html>
+<html>
+  <head>
+    <title>Getting Started</title>
+    <!-- <script src="https://unpkg.com/lodash@4.16.6"></script> -->
+  </head>
+  <body>
+{#    <h1 id="world">Hi</h1>#}
+    <div id="root" class="testClass">
+        Hello
+    </div>
+{#    <script src="../static/build/app.js"></script>#}
+{#    {% render_bundle 'app' 'js' %}#}
+{#    {% render_bundle 'test' 'js' %}#}
+    {% render_bundle 'index' 'js' %}
+  </body>
+</html>

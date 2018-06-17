@@ -1,4 +1,4 @@
-import {printText} from './utils'
+import {printText} from './utils';
 import './style.css';
 
 import Hello from './test_react.jsx';
