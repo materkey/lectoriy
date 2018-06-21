@@ -32,8 +32,8 @@ router = DefaultRouter()
 router.register('comments', CommentViewSet, base_name='comment')
 router.register('users', UserViewSet, base_name='user')
 router.register('courses', CourseViewSet, base_name='course')
-router.register('videos', VideoViewSet, base_name='course')
-router.register('events', EventViewSet, base_name='course')
+router.register('videos', VideoViewSet, base_name='videos')
+router.register('events', EventViewSet, base_name='events')
 
 urlpatterns = [
     # path('', RedirectView.as_view(url='accounts/login')),

@@ -12,5 +12,6 @@ def saving_eventable_model(instance, created=False, **kwargs):
         e.object = instance
         e.save()
 
+
 for model in EventableMixin.__subclasses__():
     post_save.connect(saving_eventable_model, sender=model)
