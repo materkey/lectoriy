@@ -12,7 +12,7 @@ class UserEditSerializer(ModelSerializer):
         model = User
         fields = ('id', 'username', 'email', 'first_name', 'last_name', 'password')
 
-    def validate_password(self,data):
+    def validate_password(self, data):
         validators.validate_password(password=data, user=User)
         return data
 

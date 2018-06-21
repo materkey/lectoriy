@@ -23,18 +23,22 @@ from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
 
 from core.views import login_view, UserViewSet
+from events.views import EventViewSet
 from lectoriy import index
 from comments.views import CommentViewSet
-
+from videos.views import CourseViewSet, VideoViewSet
 
 router = DefaultRouter()
 router.register('comments', CommentViewSet, base_name='comment')
 router.register('users', UserViewSet, base_name='user')
+router.register('courses', CourseViewSet, base_name='course')
+router.register('videos', VideoViewSet, base_name='course')
+router.register('events', EventViewSet, base_name='course')
 
 urlpatterns = [
     # path('', RedirectView.as_view(url='accounts/login')),
     path('admin/', admin.site.urls),
-    path('accounts/', include('core.urls', namespace='core')),
+    path('accountss/', include('core.urls', namespace='core')),
     path('social/', include('social_django.urls', namespace='social')),
     path('api/v1/', include(router.urls)),
     path('api-token-auth/', obtain_auth_token),

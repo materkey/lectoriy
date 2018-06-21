@@ -16,9 +16,9 @@ const styles = {
 };
 
 class CenteredTabs extends React.Component {
-    handleChange = (event, value) => {
-        this.props.changeRoute(value);
-    };
+    // handleChange = (event, value) => {
+    //     // this.props.changeRoute(value);
+    // };
 
     render() {
         const { classes } = this.props;
@@ -28,7 +28,7 @@ class CenteredTabs extends React.Component {
                 <Route render={ ({ history }) => (
                     <Tabs
                         value={ this.props.value }
-                        onChange={ this.handleChange }
+                        // onChange={ this.handleChange }
                         indicatorColor="primary"
                         textColor="primary"
                         centered
@@ -36,28 +36,28 @@ class CenteredTabs extends React.Component {
                         <Tab
                             label="Лента"
                             onClick={ () => {
-                                this.props.changeRoute(0);
+                                // this.props.changeRoute(0);
                                 history.push('/feed/');
                             } }
                         />
                         <Tab
                             label="Курсы"
                             onClick={ () => {
-                                this.props.changeRoute(1);
+                                // this.props.changeRoute(1);
                                 history.push('/courses/');
                             } }
                         />
                         <Tab
                             label="Видео"
                             onClick={ () => {
-                                this.props.changeRoute(2);
+                                // this.props.changeRoute(2);
                                 history.push('/videos/');
                             } }
                         />
                         <Tab
                             label="Коллекции"
                             onClick={ () => {
-                                this.props.changeRoute(3);
+                                // this.props.changeRoute(3);
                                 history.push('/collections/');
                             } }
                         />

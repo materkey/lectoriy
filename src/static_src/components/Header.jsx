@@ -21,27 +21,31 @@ const styles = {
     },
 };
 
-function ButtonAppBar(props) {
-    const { classes } = props;
-    return (
-        <div className={ classes.root }>
-            <AppBar position="static">
-                <Toolbar>
-                    <IconButton className={ classes.menuButton } color="inherit" aria-label="Menu">
-                        <Logo />
-                    </IconButton>
-                    <Typography variant="title" color="inherit" className={ classes.flex }>
-                        Лекторий
-                    </Typography>
-                    <Button color="inherit">Войти</Button>
-                </Toolbar>
-            </AppBar>
-        </div>
-    );
+class Header extends React.Component {
+    render() {
+        return (
+            <div className={ this.props.classes.root }>
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton className={ this.props.classes.menuButton } color="inherit" aria-label="Menu">
+                            <Logo />
+                        </IconButton>
+                        <Typography variant="title" color="inherit" className={ this.props.classes.flex }>
+                            Лекторий
+                        </Typography>
+                        <Button
+                            href="/social/login/vk-oauth2/"
+                            color="inherit"
+                        >Войти
+                        </Button>
+                    </Toolbar>
+                </AppBar>
+            </div>
+        );
+    }
+
+    static propTypes = {
+        classes: PropTypes.object.isRequired,
+    };
 }
-
-ButtonAppBar.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(ButtonAppBar);
+export default withStyles(styles)(Header);

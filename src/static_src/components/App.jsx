@@ -3,9 +3,13 @@ import { Route, Switch } from 'react-router-dom';
 
 import Header from './Header';
 import Tabs from './Tabs';
-import Card from './Card';
-import AddButton from './AddButton';
-import {Redirect} from "react-router";
+import CourseList from './CourseList';
+import AddCourse from './AddCourse';
+import AddVideo from './AddVideo';
+import { Redirect } from 'react-router';
+import LoginDialog from './LoginDialog';
+import VideoList from "./VideoList";
+import YT from "./YT";
 
 export class App extends React.Component {
     render() {
@@ -21,22 +25,48 @@ export class App extends React.Component {
                     />
                     <Route
                         exact
+                        path="/feed/"
+                        component={ () => (
+                            <div>
+
+                            </div>
+                        )
+                        }
+                    />
+                    <Route
+                        exact
                         path="/courses/"
-                        component={ () => <h2>Курсы</h2> }
+                        component={ () => (
+                            <div>
+                                <CourseList />
+                                <AddCourse />
+
+                            </div>
+                        )
+                        }
                     />
                     <Route
                         exact
                         path="/videos/"
-                        component={ () => <h2>Видео</h2> }
+                        component={ () => (
+                            <div>
+                                <VideoList />
+                                <AddVideo />
+                            </div>
+                        )
+                        }
+                    />
+                    <Route
+                        exact
+                        path="/collections/"
+                    />
+                    <Route
+                        exact
+                        path="/login/"
+                        component={ () => <h2>Логин</h2> }
+
                     />
                 </Switch>
-
-                <Card centered />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <AddButton />
             </div>
         );
     }
